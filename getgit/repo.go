@@ -6,16 +6,17 @@ import (
 
 type Repo struct {
 	id          int       `json:"id"`
-	name        string    `json:"name"`
-	full_name   string    `json:"full_name"`
-	url         string    `json:"html_url"`
-	description string    `json:"description"`
-	created     time.Time `json:"created_at"`
-	updated     time.Time `json:"updated_at"`
-	homepage    string    `json:"homepage"`
-	stars       int       `json:"stargazers_count"`
-	watchers    int       `json:"watchers_count"`
-	language    string    `json:"language"`
+	Name        string    `json:"name"`
+	Full_name   string    `json:"full_name"`
+	URL         string    `json:"html_url"`
+	Description string    `json:"description"`
+	Created     time.Time `json:"created_at"`
+	Updated     time.Time `json:"updated_at"`
+	Homepage    string    `json:"homepage"`
+	Stars       int       `json:"stargazers_count"`
+	Watchers    int       `json:"watchers_count"`
+	Language    string    `json:"language"`
+	Git_URL     string    `json:"git_url"`
 }
 
 type GitError struct {

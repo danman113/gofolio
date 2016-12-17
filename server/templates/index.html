@@ -1,3 +1,21 @@
-<h1>Hello!</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit ratione dolorum officia voluptatum voluptate unde nemo, corporis soluta quidem consequatur porro id nihil, quas eius incidunt, velit dolores placeat quia.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo reiciendis culpa iste, assumenda omnis. Similique minima recusandae corrupti, ab eligendi cumque, eius provident quos nulla impedit blanditiis asperiores debitis unde?</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<script src="/static/bootstrap/jquery-2.2.4.min.js"></script>
+	<script src="/static/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">	
+		{{range .Repos}}
+			<h2><a href="{{.URL}}" target="_blank">{{.Name}}</a></h2>
+			<p>{{.Description}}</p>
+			<hr>
+		{{end}}
+	</div>
+	<h1>Hello!</h1>
+</body>
+</html>

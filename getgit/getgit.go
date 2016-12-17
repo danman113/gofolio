@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os/exec"
 	"time"
 )
 
+// Tests an interface for nil. If so, returns the null string
 func NilString(n interface{}) string {
 	if n == nil {
 		return ""
@@ -16,6 +18,7 @@ func NilString(n interface{}) string {
 	}
 }
 
+// Parses proper github JSON to a Repo object
 func ParseRepo(v map[string]interface{}) Repo {
 	id := int(v["id"].(float64))
 	name := v["name"].(string)
@@ -28,6 +31,7 @@ func ParseRepo(v map[string]interface{}) Repo {
 	stars := int(v["stargazers_count"].(float64))
 	watchers := int(v["watchers_count"].(float64))
 	language := NilString(v["language"])
+	git_url := NilString(v["git_url"])
 	return Repo{
 		id,
 		name,
@@ -40,9 +44,11 @@ func ParseRepo(v map[string]interface{}) Repo {
 		stars,
 		watchers,
 		language,
+		git_url,
 	}
 }
 
+// Gets github repos of user
 func GetRepos(user string) ([]Repo, error) {
 
 	res, geterr := http.Get("https://api.github.com/users/" + user + "/repos")
@@ -78,4 +84,14 @@ func GetRepos(user string) ([]Repo, error) {
 
 	fmt.Printf("")
 	return repos, nil
+}
+
+// Installs repo if git is installed
+func InstallRepo(r *Repo) error {
+	gitPath, giterr := exec.LookPath("git")
+	if giterr != nil {
+		return fmt.Errorf("git: Git not installed. Please install git.")
+	}
+	exec.Command(gitPath, r.Git_URL)
+	return nil
 }

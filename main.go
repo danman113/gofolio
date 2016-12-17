@@ -12,11 +12,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Printf("Repos of %s:\n", user)
-		for _, repo := range repos {
-			fmt.Println(repo)
-		}
+		server.SetRepos(&repos)
 		server.Run()
 	}
-
 }
